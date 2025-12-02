@@ -106,29 +106,23 @@
 <script>
   // Scroll animation for messages
   function initMessagesAnimation() {
-    const messages = document.querySelectorAll('.message, .typing-indicator');
+    const messages = document.querySelectorAll('.message');
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Animate in when scrolling down
-          const delay = parseInt(entry.target.dataset.delay) || 0;
-          setTimeout(() => {
-            entry.target.classList.add('visible');
-          }, delay);
+          entry.target.classList.add('visible');
         } else {
           // Animate out when scrolling up (element leaves viewport)
           entry.target.classList.remove('visible');
         }
       });
     }, {
-      threshold: 0.2,
-      rootMargin: '0px 0px -33vh 0px'
+      threshold: 0,
+      rootMargin: "-250px 0px -250px 0px",
     });
 
     messages.forEach((message, index) => {
-      // Add staggered delay for sequential appearance
-      message.dataset.delay = index * 300;
       observer.observe(message);
     });
   }
