@@ -1,0 +1,185 @@
+<style>
+  .messages-section {
+    position: relative;
+    width: 100vw;
+    min-height: 100vh;
+    margin-left: calc(-50vw + 50%);
+    background: #040D12;
+    padding: 4rem 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .messages-container {
+    max-width: 600px;
+    width: 100%;
+    padding: 2rem;
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+  }
+
+  .message {
+    display: flex;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .message.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  .message.sent {
+    justify-content: flex-end;
+  }
+
+  .message.received {
+    justify-content: flex-start;
+  }
+
+  .message-bubble {
+    max-width: 70%;
+    padding: 0.75rem 1rem;
+    border-radius: 18px;
+    font-size: 1rem;
+    line-height: 1.4;
+    position: relative;
+    word-wrap: break-word;
+  }
+
+  .message.sent .message-bubble {
+    background: #5C8374;
+    color: #ffffff;
+    border-bottom-right-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .message.received .message-bubble {
+    background: rgba(147, 177, 166, 0.3);
+    color: #e8e8e8;
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  }
+
+  .message-time {
+    font-size: 0.75rem;
+    color: rgba(232, 232, 232, 0.6);
+    margin-top: 0.25rem;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.3s ease 0.2s;
+  }
+
+  .message.visible .message-time {
+    opacity: 1;
+  }
+
+  .typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    padding: 0.75rem 1rem;
+    background: rgba(147, 177, 166, 0.3);
+    border-radius: 18px;
+    border-bottom-left-radius: 4px;
+    width: fit-content;
+    opacity: 0;
+  }
+
+  .typing-indicator.visible {
+    opacity: 1;
+    animation: fadeIn 0.4s ease;
+  }
+
+  .typing-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(232, 232, 232, 0.6);
+    animation: typing 1.4s infinite;
+  }
+
+  .typing-dot:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .typing-dot:nth-child(3) {
+    animation-delay: 0.4s;
+  }
+
+  @keyframes typing {
+    0%, 60%, 100% {
+      opacity: 0.3;
+      transform: translateY(0);
+    }
+    30% {
+      opacity: 1;
+      transform: translateY(-4px);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .messages-section {
+      padding: 2rem 1rem;
+    }
+
+    .messages-container {
+      padding: 1.5rem;
+    }
+
+    .message-bubble {
+      max-width: 80%;
+      font-size: 0.95rem;
+    }
+  }
+</style>
+
+<script>
+  // Scroll animation for messages
+  function initMessagesAnimation() {
+    const messages = document.querySelectorAll('.message, .typing-indicator');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          // Get the index from the element's data attribute or calculate it
+          const delay = parseInt(entry.target.dataset.delay) || 0;
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, delay);
+        }
+      });
+    }, {
+      threshold: 0.2,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    messages.forEach((message, index) => {
+      // Add staggered delay for sequential appearance
+      message.dataset.delay = index * 300;
+      observer.observe(message);
+    });
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMessagesAnimation);
+  } else {
+    initMessagesAnimation();
+  }
+</script>
