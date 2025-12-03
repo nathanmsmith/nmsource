@@ -9,13 +9,16 @@
   }
 
   .scroll-image-container {
-    position: sticky;
+    position: absolute;
     top: 0;
+    left: 0;
+    width: 100%;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 2rem;
+    will-change: transform;
   }
 
   .scroll-image {
@@ -40,3 +43,35 @@
          class="scroll-image">
   </div>
 </section>
+
+<script>
+  function initScrollImageMovement() {
+    const section = document.querySelector('.scroll-image-section');
+    const container = document.querySelector('.scroll-image-container');
+
+    if (!section || !container) return;
+
+    function updateImagePosition() {
+      const rect = section.getBoundingClientRect();
+      const sectionHeight = section.offsetHeight;
+      const viewportHeight = window.innerHeight;
+
+      // Calculate how far through the section we've scrolled (0 to 1)
+      const scrollProgress = Math.max(0, Math.min(1, -rect.top / (sectionHeight - viewportHeight)));
+
+      // Move the image down as we scroll (from 0 to 100vh)
+      const translateY = scrollProgress * viewportHeight;
+
+      container.style.transform = `translateY(${translateY}px)`;
+    }
+
+    window.addEventListener('scroll', updateImagePosition, { passive: true });
+    updateImagePosition(); // Initial position
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initScrollImageMovement);
+  } else {
+    initScrollImageMovement();
+  }
+</script>
