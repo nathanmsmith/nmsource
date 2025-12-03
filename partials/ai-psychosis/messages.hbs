@@ -20,12 +20,12 @@
 
   .date-divider {
     text-align: center;
-    color: rgba(232, 232, 232, 0.5);
-    font-size: 0.85rem;
+    color: rgba(232, 232, 232, 0.45);
+    font-size: 0.75rem;
     margin: 1.5rem 0;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    font-weight: 500;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 600;
   }
 
   .message {
@@ -77,26 +77,29 @@
   }
 
   .message-name {
-    font-size: 0.75rem;
-    color: rgba(232, 232, 232, 0.6);
-    margin-bottom: 0.25rem;
-    margin-left: 0.5rem;
-    font-weight: 500;
+    font-size: 0.6875rem;
+    color: rgba(232, 232, 232, 0.5);
+    margin-bottom: 0.125rem;
+    margin-left: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
   }
 
   .message.sent .message-name {
     text-align: right;
-    margin-right: 0.5rem;
+    margin-right: 0.75rem;
     margin-left: 0;
   }
 
   .message-bubble {
-    padding: 0.75rem 1rem;
+    padding: 0.5rem 0.875rem;
     border-radius: 18px;
-    font-size: 2.4rem;
-    line-height: 1.4;
+    font-size: 1.0625rem;
+    line-height: 1.35;
     position: relative;
     word-wrap: break-word;
+    font-weight: 400;
+    letter-spacing: -0.01em;
   }
 
   .message.sent .message-bubble {
