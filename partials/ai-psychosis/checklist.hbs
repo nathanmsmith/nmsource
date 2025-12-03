@@ -31,6 +31,10 @@
     opacity: 0;
   }
 
+  .hua-methodology :is(li+li,li :is(ul,ol)) {
+    margin-top: 16px;
+  }
+
   .hua-methodology li.visible {
     animation: fadeIn 2s ease-out forwards;
   }
@@ -78,6 +82,8 @@
       entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
+        } else {
+          entry.target.classList.remove('visible');
         }
       });
     }, {
