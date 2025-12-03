@@ -22,7 +22,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     opacity: 0;
     transition: opacity 1s ease;
   }
@@ -41,18 +41,6 @@
     pointer-events: none;
   }
 </style>
-
-<section class="audio-image-section">
-  <div class="audio-image-container">
-    <img src="https://images.unsplash.com/photo-1614730321146-b6fa6a46bcb4?w=1920&q=80"
-         alt="Atmospheric background"
-         class="audio-image-bg">
-    <div class="audio-overlay"></div>
-    <audio class="section-audio" loop>
-      <source src="https://kenziepossee.com/content/media/2025/12/blizzard-2.mp3" type="audio/mpeg">
-    </audio>
-  </div>
-</section>
 
 <script>
   function initAudioImageSection() {
@@ -83,8 +71,11 @@
         // Leaving the section
         isInView = false;
         image.classList.remove('active');
-        audio.pause();
-        audio.currentTime = 0;
+
+        setTimeout(() => {
+          audio.pause();
+          audio.currentTime = 0;
+        }, 1000);
       }
     }
 
