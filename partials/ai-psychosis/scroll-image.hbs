@@ -2,43 +2,33 @@
   .scroll-image-section {
     position: relative;
     width: 100vw;
-    height: 100vh;
+    height: 200vh;
     margin-left: calc(-50vw + 50%);
     background: #040D12;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     overflow: hidden;
   }
 
   .scroll-image-container {
     position: sticky;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 100%;
-    max-width: 800px;
+    top: 0;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     padding: 2rem;
   }
 
   .scroll-image {
     width: 100%;
+    max-width: 800px;
     height: auto;
     border-radius: 12px;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-    opacity: 0;
-    transform: scale(0.9);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .scroll-image.visible {
-    opacity: 1;
-    transform: scale(1);
   }
 
   @media (max-width: 768px) {
-    .scroll-image-container {
+    .scroll-image {
       max-width: 90%;
-      padding: 1rem;
     }
   }
 </style>
@@ -50,32 +40,3 @@
          class="scroll-image">
   </div>
 </section>
-
-<script>
-  function initScrollImageAnimation() {
-    const scrollImage = document.querySelector('.scroll-image');
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        } else {
-          entry.target.classList.remove('visible');
-        }
-      });
-    }, {
-      threshold: 0.3,
-      rootMargin: "0px"
-    });
-
-    if (scrollImage) {
-      observer.observe(scrollImage);
-    }
-  }
-
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initScrollImageAnimation);
-  } else {
-    initScrollImageAnimation();
-  }
-</script>
