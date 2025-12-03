@@ -86,8 +86,6 @@
       entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
-        } else {
-          entry.target.classList.remove('visible');
         }
       });
     }, {
