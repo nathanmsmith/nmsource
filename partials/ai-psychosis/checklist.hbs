@@ -32,7 +32,7 @@
   }
 
   .hua-methodology li.visible {
-    opacity: 1;
+    animation: fadeIn 2s ease-out forwards;
   }
 
   .split-right {
@@ -82,7 +82,7 @@
       });
     }, {
       threshold: 1,
-      rootMargin: '-100px 0px -100px 0px'
+      rootMargin: '-100px -100px -100px -100px'
     });
 
     checklistItems.forEach(item => {
