@@ -165,7 +165,7 @@
     const messages = document.querySelectorAll('.message');
     const dateDividers = document.querySelectorAll('.date-divider');
 
-    const observer = new IntersectionObserver((entries) => {
+    const messageObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           entry.target.classList.add('visible');
@@ -178,13 +178,26 @@
       threshold: 0,
       rootMargin: "-250px 0px -250px 0px",
     });
+    const dateObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        } else {
+          // Animate out when scrolling up (element leaves viewport)
+          entry.target.classList.remove('visible');
+        }
+      });
+    }, {
+      threshold: 0,
+      rootMargin: "0px 0px -250px",
+    });
 
     messages.forEach((message, index) => {
-      observer.observe(message);
+      messageObserver.observe(message);
     });
 
     dateDividers.forEach((divider) => {
-      observer.observe(divider);
+      messageObserver.observe(divider);
     });
   }
 
