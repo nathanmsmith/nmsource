@@ -22,6 +22,14 @@
     text-transform: none;
     letter-spacing: 0;
     font-weight: 600;
+    opacity: 0;
+    transform: translateY(20px) scale(0.95);
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+
+  .date-divider.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
   }
 
   .message {
@@ -155,6 +163,7 @@
   // Scroll animation for messages
   function initMessagesAnimation() {
     const messages = document.querySelectorAll('.message');
+    const dateDividers = document.querySelectorAll('.date-divider');
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -172,6 +181,10 @@
 
     messages.forEach((message, index) => {
       observer.observe(message);
+    });
+
+    dateDividers.forEach((divider) => {
+      observer.observe(divider);
     });
   }
 
