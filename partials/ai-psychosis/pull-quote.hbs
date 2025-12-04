@@ -14,7 +14,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
-    z-index: -1;
+    z-index: 0;
   }
 
   .center-container {
@@ -26,9 +26,12 @@
   }
 
   .pull-quote {
+    position: relative;
+    z-index: 1;
     max-width: 400px;
     padding: 2rem;
     backdrop-filter: blur(2px);
+    background: transparent;
     color: #e8e8e8;
     font-size: 3rem;
     font-weight: 800;
