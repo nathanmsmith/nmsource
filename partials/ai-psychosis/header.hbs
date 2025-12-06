@@ -334,8 +334,25 @@
   <hgroup class="title-container">
     <h1 class="psychosis-title">{{title}}</h1>
     <p class="psychosis-subtitle">{{custom_excerpt}}</p>
-    <button class="scroll-button" onclick="window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })">
+    <button class="scroll-button" onclick="enterPsychosis()">
       Enter
     </button>
   </hgroup>
 </header>
+
+<script>
+  function enterPsychosis() {
+    // Scroll to content
+    window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+
+    // Unlock audio playback for later use
+    window.audioUnlocked = true;
+
+    // Prime all audio elements so they can autoplay later
+    document.querySelectorAll('audio').forEach(audio => {
+      audio.play().catch(() => {});
+      audio.pause();
+      audio.currentTime = 0;
+    });
+  }
+</script>
