@@ -184,6 +184,47 @@
     font-size: 20px;
   }
 
+  .scroll-button {
+    margin-top: 3rem;
+    padding: 1rem 2rem;
+    background: rgba(92, 131, 116, 0.2);
+    border: 2px solid rgba(147, 177, 166, 0.6);
+    border-radius: 50px;
+    color: #93B1A6;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow:
+      0 0 20px rgba(92, 131, 116, 0.4),
+      inset 0 0 20px rgba(147, 177, 166, 0.1);
+    animation: button-pulse 3s ease-in-out infinite;
+  }
+
+  .scroll-button:hover {
+    background: rgba(92, 131, 116, 0.4);
+    border-color: rgba(147, 177, 166, 0.9);
+    box-shadow:
+      0 0 30px rgba(92, 131, 116, 0.8),
+      inset 0 0 30px rgba(147, 177, 166, 0.2);
+    transform: translateY(-2px);
+  }
+
+  @keyframes button-pulse {
+    0%, 100% {
+      box-shadow:
+        0 0 20px rgba(92, 131, 116, 0.4),
+        inset 0 0 20px rgba(147, 177, 166, 0.1);
+    }
+    50% {
+      box-shadow:
+        0 0 30px rgba(92, 131, 116, 0.6),
+        inset 0 0 30px rgba(147, 177, 166, 0.2);
+    }
+  }
+
   @media (max-width: 1280px) {
     .psychosis-title {
       font-size: 36px;
@@ -301,5 +342,8 @@
   <hgroup class="title-container">
     <h1 class="psychosis-title">{{title}}</h1>
     <p class="psychosis-subtitle">{{custom_excerpt}}</p>
+    <button class="scroll-button" onclick="window.scrollTo({ top: window.innerHeight, behavior: 'smooth' })">
+      Enter
+    </button>
   </hgroup>
 </header>
