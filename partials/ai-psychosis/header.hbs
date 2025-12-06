@@ -158,11 +158,6 @@
     transform: translate(-50%, -50%);
     z-index: 10;
     text-align: center;
-  }
-
-  .psychosis-title {
-    font-size: 6rem;
-    font-weight: 900;
     color: #93B1A6;
     text-shadow:
       0 0 10px rgba(92, 131, 116, 0.8),
@@ -172,7 +167,16 @@
       -3px -3px 0 rgba(92, 131, 116, 0.4);
     animation: title-glitch 5s ease-in-out infinite;
     letter-spacing: 0.1em;
+  }
+
+  .psychosis-title {
+    font-size: 6rem;
+    font-weight: 900;
     text-transform: uppercase;
+  }
+
+  .psychosis-subtitle {
+    font-size: 20px;
   }
 
   @media (max-width: 1280px) {
@@ -280,7 +284,8 @@
   </div>
   <div class="distortion-layer"></div>
 
-  <div class="title-container">
+  <hgroup class="title-container">
     <h1 class="psychosis-title">{{title}}</h1>
-  </div>
+    <p class="psychosis-subtitle">{{custom_excerpt}}</p>
+  </hgroup>
 </header>
