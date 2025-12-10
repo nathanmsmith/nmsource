@@ -152,20 +152,7 @@
     height: 150%;
     transform: translate(-50%, -50%);
     background-image:
-      repeating-linear-gradient(45deg,
-        transparent 0,
-        transparent 15px,
-        rgba(147, 177, 166, 0.06) 15px,
-        rgba(147, 177, 166, 0.06) 17px,
-        transparent 17px,
-        transparent 30px),
-      repeating-linear-gradient(-45deg,
-        transparent 0,
-        transparent 15px,
-        rgba(92, 131, 116, 0.05) 15px,
-        rgba(92, 131, 116, 0.05) 17px,
-        transparent 17px,
-        transparent 30px);
+      repeating-radial-gradient(circle at 50% 50%, transparent 0, transparent 10px, rgba(255, 255, 255, 0.03) 10px, rgba(255, 255, 255, 0.03) 20px);
     animation: distortion-rotate 15s linear infinite;
     mix-blend-mode: overlay;
   }
